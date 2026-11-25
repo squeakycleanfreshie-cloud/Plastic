@@ -1,4 +1,3 @@
-
 #this part of the project was the only part of the project that used AI (:
 
 init offset = -2
@@ -23,14 +22,14 @@ define gui.hover_muted_color    = "#c9ece8"
 define gui.text_color           = clinic_navy
 define gui.interface_text_color = clinic_navy
 
-define gui.text_font           = "DejaVuSans.ttf"
-define gui.name_text_font      = "DejaVuSans-Bold.ttf"
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.text_font           = "font.ttf"
+define gui.name_text_font      = "font.ttf"
+define gui.interface_text_font = "font_bold.ttf"
 define gui.text_size           = 26
 define gui.name_text_size      = 50
 define gui.interface_text_size = 26
 define gui.label_text_size     = 28
-define gui.title_text_size     = 64
+define gui.title_text_size     = 200
 
 define gui.textbox_height  = 220
 define gui.textbox_yalign  = 1.0
@@ -85,7 +84,7 @@ style navigation_button_text:
 
 style main_menu_title:
     color clinic_navy
-    size 72
+    size 200
 
 style main_menu_version:
     color clinic_grey
@@ -114,7 +113,3 @@ init python:
         style.choice_button.background = Solid("#0d1a1ccc")
         style.choice_button.hover_background = Solid("#f4fbfa")
         renpy.style.rebuild()
-
-define intern = Character("Intern", who_color=clinic_teal)
-define doctor = Character("Dr. Vale", who_color=evil_red)
-define nurse  = Character("Nurse", who_color=clinic_grey)
