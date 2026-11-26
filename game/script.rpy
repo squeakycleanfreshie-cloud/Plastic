@@ -1,20 +1,26 @@
 ﻿style default:
     font "fonts/font.ttf"
 
+style button_text:
+    font "fonts/font.ttf"
+
+style label_text:
+    font "fonts/font.ttf"
+
+style say_dialogue:
+    font "fonts/font.ttf"
+
+style say_label:
+    font "fonts/font.ttf"
+
+style input:
+    font "fonts/font.ttf"
+
 style quick_button_text:
     font "fonts/font.ttf"
     size 24
-    idle_color "#0000"
+    idle_color "#ffffff"
     hover_color "#ffd27a"
-
-style navigation_button_text:
-    font "fonts/font.ttf"
-
-style main_menu_text:
-    font "fonts/font.ttf"
-
-style game_menu_label_text:
-    font "fonts/font.ttf"
 
 style choice_button_text:
     font "fonts/font.ttf"
@@ -54,16 +60,15 @@ init python:
             self.h = h
             self.strokes = []
             self.drawing = False
-
+        
         def render(self, width, height, st, at):
             r = renpy.Render(self.w, self.h)
             c = r.canvas()
-            c.rect("#ffffff", (0, 0, self.w, self.h))
+            c.rect("#1a1a6e", (0, 0, self.w, self.h))
+            c.rect("#ffffff", (4, 4, self.w - 8, self.h - 8))
             for stroke in self.strokes:
-                if len(stroke) > 1:
-                    c.lines("#1a1a6e", False, stroke, 3)
-                else:
-                    c.circle("#1a1a6e", stroke[0], 2)
+                for (px, py) in stroke:
+                    c.circle("#1a1a6e", (int(px), int(py)), 2)
             return r
 
         def event(self, ev, x, y, st):
@@ -73,7 +78,12 @@ init python:
                 self.strokes.append([(x, y)])
                 renpy.redraw(self, 0)
             elif ev.type == pygame.MOUSEMOTION and self.drawing and inside:
-                self.strokes[-1].append((x, y))
+                lx, ly = self.strokes[-1][-1]
+                dist = max(abs(x - lx), abs(y - ly))
+                steps = max(1, int(dist / 1.5))
+                for i in range(1, steps + 1):
+                    t = i / float(steps)
+                    self.strokes[-1].append((lx + (x - lx) * t, ly + (y - ly) * t))
                 renpy.redraw(self, 0)
             elif ev.type == pygame.MOUSEBUTTONUP:
                 self.drawing = False
@@ -185,5 +195,26 @@ label bus_ride:
     call screen sign_nda
     s "You sign the ipad and tell Clara."
     c "Perfect! Lets get you straight to doctor Bailey."
+    s "You and clara walk over to the door that was locked before."
+    s "This time it gives you acsess"
+    c "I'm going to leave you here. Its just stragiht down the hall to the final door."
+    s "Thanks so much for your help!"
+    c "No worries. See you later."
+    s "You keep walking to the end of the corridor, until you reach Baileys office."
+    s "You walk inside."
+    b "hey sonny!"
+    s "hello!"
+    b "I have been waiting so long to see you. "
+    b "Welcome to new dawn studios"
+    b "You are going to love it here."
+    s "She hands you a pass with your name and photo."
+    s "Wow! How did you get my photo?"
+    b "Our security system took photos of you while you were on you introductory tour."
+    s "Wow, so advanced."
+    b "Yeah, It is pretty advanced, Isn't it."
+    s "You put on your pass."
+    b "also you won't need that basic uniform your wearing. Please change into the one inside the change room"
+    s "She points you in the direction of the changroom and you walk over to get changed."
+    s "The uniform is really nice."
 
     return
