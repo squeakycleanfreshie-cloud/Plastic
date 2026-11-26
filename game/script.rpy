@@ -120,6 +120,9 @@ screen sign_nda():
 
 # end of AI section
 
+
+# start of the story ayyy
+
 label start:
     scene bg bedroom
     show doctor at center
@@ -216,5 +219,23 @@ label bus_ride:
     b "also you won't need that basic uniform your wearing. Please change into the one inside the change room"
     s "She points you in the direction of the changroom and you walk over to get changed."
     s "The uniform is really nice."
+    b "Okay, so your job is really broad. You will get a smart watch that tells you which job to take, and what section of the studios it is in."
+    s "She hands you a really nice looking smartwatch."
+    b "The smartwatch manages everything, and our breaks are dynamic, so you don't have a set break time every day, the watch will tell you."
+    b "You know where the breakroom is, right?"
+    s "yes."
+    b "great. okay, now I'm going to take you to the immerse studio."
+    s "Cool. So what exactly is the immerse studio."
+    b "I'm oversimplifing this, but its like therapy but 10x more effective."
+    s "how does it work?"
+    b "it like immerses you in an enviroment, and trains you to deal with stuff, all personalised to the person."
+    b "its incredible."
+    s "wow. sounds impressive."
+    b "so where did you learn to plastic surgery"
+    s "Orlando State."
+    b "and your residency?"
+    s "South Southern."
+    b "The studios will be a massive upgrade from those places"
 
     return
+# end of the story nooooo
