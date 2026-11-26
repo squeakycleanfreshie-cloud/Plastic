@@ -2,6 +2,10 @@
 ## Initialization
 ################################################################################
 
+define gui.text_font = "fonts/font.ttf"
+define gui.name_text_font = "fonts/font.ttf"
+define gui.interface_font = "fonts/font.ttf"
+define gui.choice_button_text_font = "fonts/font.ttf"
 ## The init offset statement causes the initialization statements in this file
 ## to run before init statements in any other file.
 init offset = -2

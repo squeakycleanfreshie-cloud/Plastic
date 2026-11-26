@@ -1,4 +1,28 @@
-﻿define config.default_textshader = "typewriter"
+﻿style default:
+    font "fonts/font.ttf"
+
+style quick_button_text:
+    font "fonts/font.ttf"
+    size 24
+    idle_color "#0000"
+    hover_color "#ffd27a"
+
+style navigation_button_text:
+    font "fonts/font.ttf"
+
+style main_menu_text:
+    font "fonts/font.ttf"
+
+style game_menu_label_text:
+    font "fonts/font.ttf"
+
+style choice_button_text:
+    font "fonts/font.ttf"
+    size 40
+    color "#ffffff"
+    hover_color "#ffd27a"
+
+define config.default_textshader = "typewriter"
 default preferences.text_cps = 40
 
 define s = Character("Sonny")
@@ -17,6 +41,74 @@ default loyalty = 0
 image bg bedroom = im.Scale("images/bg bedroom.jpg", 1920, 1080)
 image bg bus = im.Scale("images/bg bus.jpg", 1920, 1080)
 image bg reception = im.Scale("images/reception.jpg", 1920, 1080)
+
+# start of AI section
+
+init python:
+    import pygame_sdl2 as pygame
+
+    class SignaturePad(renpy.Displayable):
+        def __init__(self, w=700, h=250, **kwargs):
+            super(SignaturePad, self).__init__(**kwargs)
+            self.w = w
+            self.h = h
+            self.strokes = []
+            self.drawing = False
+
+        def render(self, width, height, st, at):
+            r = renpy.Render(self.w, self.h)
+            c = r.canvas()
+            c.rect("#ffffff", (0, 0, self.w, self.h))
+            for stroke in self.strokes:
+                if len(stroke) > 1:
+                    c.lines("#1a1a6e", False, stroke, 3)
+                else:
+                    c.circle("#1a1a6e", stroke[0], 2)
+            return r
+
+        def event(self, ev, x, y, st):
+            inside = 0 <= x < self.w and 0 <= y < self.h
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and inside:
+                self.drawing = True
+                self.strokes.append([(x, y)])
+                renpy.redraw(self, 0)
+            elif ev.type == pygame.MOUSEMOTION and self.drawing and inside:
+                self.strokes[-1].append((x, y))
+                renpy.redraw(self, 0)
+            elif ev.type == pygame.MOUSEBUTTONUP:
+                self.drawing = False
+            return None
+
+        def clear(self):
+            self.strokes = []
+            self.drawing = False
+            renpy.redraw(self, 0)
+
+        def submit(self):
+            if sum(len(s) for s in self.strokes) > 5:
+                return True
+            return None
+
+define sigpad = SignaturePad()
+
+screen sign_nda():
+    modal True
+    add Solid("#000000aa")
+    frame:
+        align (0.5, 0.5)
+        padding (40, 30)
+        vbox:
+            spacing 20
+            text "NEW DAWN STUDIOS: NDA" size 32
+            text "I agree not to share any information about the Immerse Studio or its technology, or any confidnetial data I come across when working. This includes names/sensitive date of pacients and anything else." size 24
+            text "Sign below:" size 24
+            add sigpad
+            hbox:
+                spacing 30
+                textbutton "Clear" action Function(sigpad.clear)
+                textbutton "Sign" action Function(sigpad.submit)
+
+# end of AI section
 
 label start:
     scene bg bedroom
@@ -56,7 +148,7 @@ label start:
             jump bus_ride
 
 label bus_ride:
-    scene bg office with fade
+    scene bg reception with fade
     s "You arrive just on time, and walk into the front desk"
     s "Hello. I just got this job, and its my first day."
     c "Hello, my name is Clara, and I'm the receptionist of New Dawn Studios"
@@ -65,14 +157,33 @@ label bus_ride:
     c "Okay, I will give you a quick tour, and then I will hand you on to doctor Bailey."
     s "Sounds good."
     s "Clara walks you around the facilites. She shows you the break room, the surgery room, the consultation room, and finshes off by taking you to doctor Bailey."
-    c "Thats the Facilities!"
+    c "The studio is split up into 3 sections."
+    c "First their is Surgery. Thats where we run all of our plastic surgery and botox ect sessions."
+    c "Thats where you will be working the most."
+    c "Then their is the wellness studios. This is where more non-invasive treatments are held"
+    c "Like massages, skincare treatments, IV drips ect."
+    c "And then their is the Immerse Studio"
+    c "We run luxury immersive wellness sessions. I can't take you their until you sign your NDA at the end of this tour."
+    s "Why?"
+    c "The immerse studio is made using state of the art technology. We can't have it leaked to the outside."
+    c "She continues to take you to everywhere."
+    c "Eventually the tour finishes."
+    c "thats the Facilities!"
     s "Wow, they are so beautiful"
-    c "Yeah, they are. I am going to take to you doctor Bailey."
+    c "Yeah, they are. I am now going to take to you doctor Bailey."
     s "Sounds good."
     s "Clara walks you over to bailey, but when she scans the door to enter Baileys office, the door refuses her acsess"
     c "Sorry, We have problems with our doors, I'm going to just call over bailey"
     s "Okay"
-
-
+    s "Clara walks away 10m and hops on the phone. They talk for 5 minutes, but you can't hear what clara is saying."
+    s "She walks back towards you"
+    c "I'm so sorry for this inconvinience, but she wants you to sign your NDA before you come in to meet her. It is just company policy."
+    s "She walks you over to a small room with some comfortable seats and modern warm lighting."
+    s "There is an Ipad on the desk in front of you."
+    c "Just feel free to read through, and sign."
+    $ sigpad.clear()
+    call screen sign_nda
+    s "You sign the ipad and tell Clara."
+    c "Perfect! Lets get you straight to doctor Bailey."
 
     return
