@@ -4,6 +4,7 @@ default preferences.text_cps = 40
 define s = Character("Sonny")
 define g = Character("Granny")
 define c = Character("Clara")
+define b = Character("Bailey")
 
 default kindness = 0
 default honesty = 0
@@ -14,6 +15,8 @@ default pacience = 0
 default loyalty = 0
 
 image bg bedroom = im.Scale("images/bg bedroom.jpg", 1920, 1080)
+image bg bus = im.Scale("images/bg bus.jpg", 1920, 1080)
+image bg reception = im.Scale("images/reception.jpg", 1920, 1080)
 
 label start:
     scene bg bedroom
@@ -27,7 +30,7 @@ label start:
     s "so you can't be late for your first day!"
     s "You get out of bed and rush to make some folded eggs and avocado"
     s "you make yourself a cup of coffee and drink it as you rush out the door to get on the bus."
-    # scene bg bus with fade
+    scene bg bus with fade
     s "The bus is packed full, and smells bad, but you find an untaken seat sitting next to somebody."
     s "An older person walks next to you and scowls"
     g "Your a bit to young to be taking the seats up on a crowded bus"
@@ -53,6 +56,7 @@ label start:
             jump bus_ride
 
 label bus_ride:
+    scene bg office with fade
     s "You arrive just on time, and walk into the front desk"
     s "Hello. I just got this job, and its my first day."
     c "Hello, my name is Clara, and I'm the receptionist of New Dawn Studios"
@@ -60,6 +64,14 @@ label bus_ride:
     s "yeah."
     c "Okay, I will give you a quick tour, and then I will hand you on to doctor Bailey."
     s "Sounds good."
+    s "Clara walks you around the facilites. She shows you the break room, the surgery room, the consultation room, and finshes off by taking you to doctor Bailey."
+    c "Thats the Facilities!"
+    s "Wow, they are so beautiful"
+    c "Yeah, they are. I am going to take to you doctor Bailey."
+    s "Sounds good."
+    s "Clara walks you over to bailey, but when she scans the door to enter Baileys office, the door refuses her acsess"
+    c "Sorry, We have problems with our doors, I'm going to just call over bailey"
+    s "Okay"
 
 
 
