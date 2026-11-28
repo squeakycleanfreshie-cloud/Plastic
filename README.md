@@ -6,7 +6,7 @@ A visual novel game where you work as a plastic surgeon, working in a luxury stu
 - Branching Story
 - Interactive Choices
 - Cool Pinterest Art
-- Plastic Surgery Minigame? - If your seeing this I never made it
+~~- Plastic Surgery Minigame? - If your seeing this I never made it~~
 
 ## Why I made this
 I made this to expand myself beyond what I knew about renpy, and I wanted to dive deeper into the more coding side of renpy, and challenge myself to make a renpy minigame. (if your seeing this I didn't end up making it or I havn't finished writing the readme.) I also made this for Hack Clubs Terra Program. This is my week 6 Project - Halfway!
@@ -16,7 +16,7 @@ I made this project utilizing Renpy, and I wrote all my code in Visual Studio Co
 
 ## Assets
 I got all of my assets from Pintrest,
-I plan to redraw all of the assets myself in the future, but right now I just want to get the basic game funtionality out before I do that.
+I plan to redraw all of the assets myself in the future, but right now I just want to get the basic game funtionality out before I do that. Most photos are also of the Yunomori Onsen And Spa. Its so pretty!
 
 ## AI declaration
 I used AI to help me theme the game, but I only copy pasted that code, and didn't hand type it.

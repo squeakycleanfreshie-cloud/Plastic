@@ -46,7 +46,10 @@ default loyalty = 0
 
 image bg bedroom = im.Scale("images/bg bedroom.jpg", 1920, 1080)
 image bg bus = im.Scale("images/bg bus.jpg", 1920, 1080)
-image bg reception = im.Scale("images/reception.jpg", 1920, 1080)
+image bg reception = im.Scale("images/reception.png", 1920, 1080)
+image bg therapy = im.Scale("images/therapy_room.png", 1920, 1080)
+image bg therapy_entry = im.Scale("images/therapy_entry.png", 1920, 1080)
+image bg black = im.Scale("images/black.png", 1920, 1080)
 
 # start of AI section
 
@@ -236,6 +239,34 @@ label bus_ride:
     b "and your residency?"
     s "South Southern."
     b "The studios will be a massive upgrade from those places"
+    s "Yeah, I see. This place is incredible."
+    b "Your applicaiton was pretty impressive. We get 1000's of applications for this job, but your was different."
+    s "Thankyou!"
+    b "We are here!"
+    b "Why don't you tap your watch to test it out?"
+    s "Okay"
+    s "You tap your watch at the scanner point, and the door displays some text and opens."
+    s "Welcome Sonny Song and Bailey Lincoln"
+    scene bg therapy_entry
+    s "You walk through. You get to a closed corridor, with water at the end, like a river."
+    b "You have to take of your shoes here"
+    s "There is a small hole where you put your shoes."
+    s "You step into the water. It is warm."
+    s "Comforting sounds play, as you walk through the dark corridor."
+    b "The exerience is all done by our operators, so you only really have to give the safety breifing and guide pacients to the entry."
+    s "Easy!"
+    b "yes."
+    b "I will let you walk on from here. There is an open room ahead which is one single file, so one person in at a time."
+    s "Why?"
+    b "to make the experience personalised"
+    s "ohh."
+    scene bg therapy with fade
+    s "You walk up to the room. It is filled with leds."
+    s "You dought that this 'therapy' is going to do anything. there is no scientific evidence behind it, and it its just something popstars do for show."
+    s "The lights turn off, and sprayers spray a gas"
+    s "Then the darkness hits you"
+    scene bg black with vpunch
+
 
     return
 # end of the story nooooo
